@@ -1,0 +1,7 @@
+Nama: Farhan Iqratama
+Kelas: [nama kelas Dicoding]
+URL Deploy: https://farhniqratama.github.io/dicoding-pwa-spa/
+Teknologi Deploy: GitHub Pages (vite + Actions)
+Catatan:
+- PWA: App Shell + offline.html, cache API image.
+- Push: VAPID public key di src/utils/notifications.js (ganti sesuai server).

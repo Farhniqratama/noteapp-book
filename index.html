@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyek Kedua — PWA SPA</title>
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="manifest" href="./public/manifest.webmanifest" />
+  <link rel="icon" href="./public/icons/icon-192.png" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+  <link rel="preload" href="./src/app.css" as="style" />
+  <link rel="stylesheet" href="./src/app.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="app-bar" role="banner">
+    <nav aria-label="Utama">
+      <a href="#/" class="brand" aria-label="Halaman utama">📒 PWA SPA</a>
+      <ul class="nav">
+        <li><a href="#/add" aria-label="Tambah data baru">Tambah</a></li>
+        <li><a href="#/favorites" aria-label="Favorit">Favorit</a></li>
+      </ul>
+      <a id="loginLink" href="#/auth">Masuk</a>
+      <button id="logoutBtn" hidden>Keluar</button>
+      <button id="installBtn" hidden>Install App</button>
+      <button id="enablePushBtn" hidden>Nyalakan Notifikasi</button>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1" role="main" class="view" aria-live="polite"></main>
+  <footer role="contentinfo" class="footer">© 2025 — Proyek Kedua</footer>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

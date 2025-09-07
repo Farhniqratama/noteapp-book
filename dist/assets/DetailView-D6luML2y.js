@@ -1,0 +1,2 @@
+class i{constructor(e){this.view=e}async init(){}}class r{async render(e){e.innerHTML='<section class="card"><h2>Detail</h2><div id="detail">Memuat...</div></section>',await new i(this).init()}show(e){document.getElementById("detail").innerHTML=`<pre>${n(JSON.stringify(e,null,2))}</pre>`}}function n(t){return t.replace(/[&<>]/g,e=>({"&":"&amp;","<":"&lt;",">":"&gt;"})[e])}export{r as default};
+//# sourceMappingURL=DetailView-D6luML2y.js.map
