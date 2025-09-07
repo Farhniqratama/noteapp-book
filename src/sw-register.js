@@ -1,8 +1,8 @@
-// src/sw-register.js
 export async function registerSW(){
   if (!('serviceWorker' in navigator)) return
   try{
-    await navigator.serviceWorker.register('./public/sw.js?scope=./', { scope:'./' })
+    // file sw berada di /public → dibundel ke /dist/sw.js → akses dgn path relatif
+    await navigator.serviceWorker.register('./public/sw.js', { scope: './' })
   }catch(e){
     console.warn('SW register failed', e)
   }

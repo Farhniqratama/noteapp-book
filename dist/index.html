@@ -6,19 +6,32 @@
   <title>Proyek Kedua — PWA SPA</title>
   <meta name="theme-color" content="#0f172a" />
 
+  <!-- Manifest & Icons (path relatif utk GitHub Pages) -->
   <link rel="manifest" href="./assets/manifest-CfI9p-SJ.webmanifest" />
   <link rel="icon" href="./assets/icon-192-CYELvCdD.png" />
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <!-- Leaflet (peta) -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin="" defer></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-  <script type="module" crossorigin src="./assets/index-BZePX_Yn.js"></script>
+  <!-- CSS App -->
+  <style>
+    /* pastikan skip link terlihat saat fokus */
+    .skip-link{ position:absolute; left:-9999px; top:auto; }
+    .skip-link:focus{ left:1rem; top:1rem; background:#fff; color:#000; padding:.5rem 1rem; border-radius:.5rem; z-index:9999 }
+  </style>
+  <script type="module" crossorigin src="./assets/index-BeDM5Q_P.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-CGS3eETA.css">
 </head>
 <body>
+  <!-- Skip to content tepat ke <main id="main"> -->
   <a class="skip-link" href="#main">Lewati ke konten</a>
+
   <header class="app-bar" role="banner">
     <nav aria-label="Utama">
       <a href="#/" class="brand" aria-label="Halaman utama">📒 PWA SPA</a>
@@ -34,7 +47,9 @@
   </header>
 
   <main id="main" tabindex="-1" role="main" class="view" aria-live="polite"></main>
+
   <footer role="contentinfo" class="footer">© 2025 — Proyek Kedua</footer>
 
+  <!-- JS App -->
 </body>
 </html>

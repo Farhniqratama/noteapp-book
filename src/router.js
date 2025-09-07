@@ -1,18 +1,14 @@
 const routes = {
-  '': () => import('./views/HomeView.js'),
-  '#/': () => import('./views/HomeView.js'),
-  '#/add': () => import('./views/AddView.js'),
-  '#/detail': () => import('./views/DetailView.js'),
-  '#/favorites': () => import('./views/FavoritesView.js'),
-  '#/auth': () => import('./views/AuthView.js'),
-  '#/404': () => import('./views/NotFoundView.js'),
+  '/': () => import('./views/HomeView.js').then(m => m.default),
+  '/auth': () => import('./views/AuthView.js').then(m => m.default),
+  '/add': () => import('./views/AddView.js').then(m => m.default),
+  '/favorites': () => import('./views/FavoritesView.js').then(m => m.default),
+  '*': () => import('./views/NotFoundView.js').then(m => m.default),
 }
 
-export async function navigate() {
-  document.startViewTransition?.(() => {})
-  const path = location.hash || '#/'
-  const key = path.split('?')[0]
-  const loader = routes[key] || routes['#/404']
-  const module = await loader()
-  return module.default
+export async function navigate(){
+  // hash routing: #/path
+  const path = (location.hash || '#/').slice(1) || '/'
+  const loader = routes[path] || routes['*']
+  return loader()
 }

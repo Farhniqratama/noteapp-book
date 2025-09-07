@@ -1,38 +1,35 @@
-// src/presenters/HomePresenter.js
-import { StoryModel } from '../models/storyModel.js'
-import { FavoritesModel } from '../models/favoritesModel.js'
+import { listStories, getToken } from '../models/storyApi.js'
+import { getAll, put, clear, STORES } from '../utils/idb.js'
 
 export default class HomePresenter {
   constructor(view){ this.view = view }
 
   async init(){
     try{
-      const cached = await StoryModel.getCached()
-      if (cached?.length){
-        this.view.showStories(cached)
-        this._initMapSafe(cached)
-      } else {
-        this.view.showStories([])
+      const cached = await getAll(STORES.stories)
+      if (cached?.length) this.view.showStories(cached)
+
+      const token = getToken()
+      if (!token){
+        this.view.showStories(cached || [])
+        return
       }
 
-      const stories = await StoryModel.listAndCache({ page:1, size:10, location:1 })
-      this.view.showStories(stories)
-      this._initMapSafe(stories)
-    }catch(err){
-      console.error('HomePresenter.init error', err)
-      const fallback = await StoryModel.getCached()
-      this.view.showStories(fallback || [])
-      this._initMapSafe(fallback || [])
-    }
-  }
-
-  _initMapSafe(items){
-    const pts = (items || []).filter(s => s.lat && s.lon)
-    if (this.view.initMap) this.view.initMap(pts)
+      const stories = await listStories({ page:1, size:10, location:1 }).catch(()=>[])
+      if (stories?.length){
+        // normalisasi createdAt agar tampil
+        const normalized = stories.map(s => ({ ...s, createdAt: s.createdAt || new Date().toISOString() }))
+        this.view.showStories(normalized)
+        await clear(STORES.stories)
+        for (const s of normalized) await put(STORES.stories, s)
+        const points = normalized.filter(s => s.lat && s.lon)
+        this.view.initMap(points)
+      }
+    }catch(e){ console.error(e) }
   }
 
   async addFavorite(item){
-    await FavoritesModel.add(item)
-    alert('Ditambahkan ke Favorit')
+    await put(STORES.favorites, item)
+    // UI toast ditangani di View (optimistic)
   }
 }

@@ -1,18 +1,15 @@
-// public/sw.js
-const VERSION = 'v1'
+const VERSION = 'v2'
 const CACHE_APP_SHELL = `app-shell-${VERSION}`
 
+/* Vite akan menaruh konten folder public ke /dist/public
+   jadi gunakan path relatif yg sama seperti di index.html  */
 const APP_SHELL = [
   './',
   './index.html',
   './public/manifest.webmanifest',
-  './public/offline.html',
-  './src/app.css',
-  './src/main.js',
-  './src/router.js'
+  './public/offline.html'
 ]
 
-// Install
 self.addEventListener('install', (e)=>{
   e.waitUntil((async()=>{
     const cache = await caches.open(CACHE_APP_SHELL)
@@ -20,8 +17,6 @@ self.addEventListener('install', (e)=>{
     self.skipWaiting()
   })())
 })
-
-// Activate: bersihkan cache lama
 self.addEventListener('activate', (e)=>{
   e.waitUntil((async()=>{
     const keys = await caches.keys()
@@ -30,24 +25,22 @@ self.addEventListener('activate', (e)=>{
   })())
 })
 
-// Fetch: navigasi → network-first fallback offline.html
 self.addEventListener('fetch', (e)=>{
   const req = e.request
   const url = new URL(req.url)
 
-  // navigasi dokumen
+  // Navigasi → network-first, fallback offline
   if (req.mode === 'navigate'){
     e.respondWith((async()=>{
-      try{ return await fetch(req) }
-      catch{
+      try{ return await fetch(req) } catch {
         const cache = await caches.open(CACHE_APP_SHELL)
-        return await cache.match('./public/offline.html')
+        return cache.match('./public/offline.html')
       }
     })())
     return
   }
 
-  // API dicoding → network-first + cache
+  // API Story → network-first + cache
   if (url.origin.includes('story-api.dicoding.dev')){
     e.respondWith((async()=>{
       const cache = await caches.open('api-cache')
@@ -56,6 +49,17 @@ self.addEventListener('fetch', (e)=>{
       }catch{
         return (await cache.match(req)) || new Response(JSON.stringify({ error:true, message:'Offline' }), { headers:{ 'Content-Type':'application/json' } })
       }
+    })())
+    return
+  }
+
+  // Aset js/css → SWR biar cepat & tetap up-to-date
+  if (req.destination === 'script' || req.destination === 'style'){
+    e.respondWith((async()=>{
+      const cache = await caches.open('asset-cache')
+      const cached = await cache.match(req)
+      const fetching = fetch(req).then(r=>{ cache.put(req, r.clone()); return r }).catch(()=> cached)
+      return cached || fetching
     })())
     return
   }
@@ -72,7 +76,7 @@ self.addEventListener('fetch', (e)=>{
   }
 })
 
-// Push
+/* Push */
 self.addEventListener('push', (event)=>{
   let data = {}
   try{ data = event.data?.json() || {} }catch{ data = { body: event.data?.text() } }
@@ -80,7 +84,6 @@ self.addEventListener('push', (event)=>{
   const options = data.options || { body: data.body || 'Anda menerima notifikasi baru.' }
   event.waitUntil(self.registration.showNotification(title, options))
 })
-
 self.addEventListener('notificationclick', (event)=>{
   event.notification.close()
   event.waitUntil(self.clients.openWindow('./#/'))

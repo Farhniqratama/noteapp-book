@@ -1,6 +1,7 @@
 Nama: Farhan Iqratama
-Kelas: [nama kelas Dicoding]
-URL Deploy: https://farhniqratama.github.io/dicoding-pwa-spa/
+Kelas: Belajar Pengembangan Web Intermediate
+DEPLOY_URL=https://farhniqratama.github.io/noteapp-book/
+NOTES=Login opsional; stories offline ditampilkan dari IndexedDB; koordinat bisa dipilih di peta.
 Teknologi Deploy: GitHub Pages (vite + Actions)
 Catatan:
 - PWA: App Shell + offline.html, cache API image.

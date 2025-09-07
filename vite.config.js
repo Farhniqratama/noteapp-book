@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
+
 export default defineConfig({
-  base: './',
+  base: './',        // penting utk GitHub Pages
   build: { sourcemap: true }
 })
