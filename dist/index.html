@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyek Kedua — PWA SPA</title>
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="/noteapp-book/assets/icon-192-vH7vX5hx.png" />
+
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin="" defer></script>
+
+  <style>
+    .skip-link{ position:absolute; left:-9999px; top:auto; }
+    .skip-link:focus{ left:1rem; top:1rem; background:#fff; color:#000; padding:.5rem 1rem; border-radius:.5rem; z-index:9999 }
+  </style>
+  <script type="module" crossorigin src="/noteapp-book/assets/index-BIUkB2tA.js"></script>
+  <link rel="stylesheet" crossorigin href="/noteapp-book/assets/index-C4vkDqlf.css">
+<link rel="manifest" href="/noteapp-book/manifest.webmanifest"></head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <header class="app-bar" role="banner">
+    <nav aria-label="Utama">
+      <a href="#/" class="brand" aria-label="Halaman utama">📒 PWA SPA</a>
+      <ul class="nav">
+        <li><a href="#/add" aria-label="Tambah data baru">Tambah</a></li>
+        <li><a href="#/favorites" aria-label="Favorit">Favorit</a></li>
+      </ul>
+      <a id="loginLink" href="#/auth">Masuk</a>
+      <button id="logoutBtn" hidden>Keluar</button>
+      <button id="installBtn" hidden>Install App</button>
+      <button id="enablePushBtn" hidden>Nyalakan Notifikasi</button>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1" role="main" class="view" aria-live="polite"></main>
+
+  <footer role="contentinfo" class="footer">© 2025 — Proyek Kedua</footer>
+
+</body>
+</html>

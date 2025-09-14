@@ -1,0 +1,1 @@
+{"name":"Proyek Kedua — PWA SPA","short_name":"PWA SPA","start_url":"/noteapp-book/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/noteapp-book/","theme_color":"#0f172a","icons":[{"src":"public/icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"public/icons/icon-512.png","sizes":"512x512","type":"image/png"}]}

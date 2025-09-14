@@ -1,0 +1,25 @@
+{
+  "id": "/noteapp-book/",
+  "start_url": "/noteapp-book/",
+  "scope": "/noteapp-book/",
+  "name": "Proyek Kedua \u2014 PWA SPA",
+  "short_name": "PWA SPA",
+  "description": "Aplikasi SPA PWA dengan offline, installable, push, dan IndexedDB.",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "public/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "public/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+import{d as s,p as t,g as d,S as a}from"./idb-AsxtWpiW.js";const n={list(){return d(a.favorites)},add(r){const o=r!=null&&r.id?r:{...r,id:`fav-${Date.now()}`};return t(a.favorites,o)},remove(r){return s(a.favorites,r)}};export{n as F};
