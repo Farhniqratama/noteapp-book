@@ -1,4 +1,4 @@
-import{S as n}from"./storyModel-Cl2lOAwe.js";import{F as d}from"./favoritesModel-BngbJ05d.js";import"./idb-AsxtWpiW.js";import"./storyApi-CisDlYOj.js";import"./index-BIUkB2tA.js";class c{constructor(e){this.view=e}async init(){try{const e=await n.listAndCache({page:1,size:10,location:1});this.view.showStories(e);const a=(e||[]).filter(t=>t.lat&&t.lon);this.view.initMap(a)}catch(e){console.error(e)}}async addFavorite(e){await d.add(e)}}class u{async render(e){e.innerHTML=`
+import{S as n}from"./storyModel-C3CKOtsZ.js";import{F as d}from"./favoritesModel-BngbJ05d.js";import"./idb-AsxtWpiW.js";import"./storyApi-CisDlYOj.js";import"./index-BXyFPkpQ.js";class c{constructor(e){this.view=e}async init(){try{const e=await n.listAndCache({page:1,size:10,location:1});this.view.showStories(e);const a=(e||[]).filter(t=>t.lat&&t.lon);this.view.initMap(a)}catch(e){console.error(e)}}async addFavorite(e){await d.add(e)}}class u{async render(e){e.innerHTML=`
       <section class="stories-map-container">
         <article class="stories-card">
           <h1>Stories (online/offline)</h1>

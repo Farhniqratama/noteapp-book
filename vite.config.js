@@ -10,7 +10,7 @@ export default defineConfig({
       srcDir: '.',
       filename: 'sw.js',
       devOptions: { enabled: true },
-      includeAssets: ['favicon.png', 'public/offline.html', 'public/icons/icon-192.png', 'public/icons/icon-512.png'],
+      includeAssets: ['favicon.png', 'offline.html', 'icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
         name: 'Proyek Kedua — PWA SPA',
         short_name: 'PWA SPA',
@@ -20,8 +20,8 @@ export default defineConfig({
         background_color: '#ffffff',
         theme_color: '#0f172a',
         icons: [
-          { src: 'public/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'public/icons/icon-512.png', sizes: '512x512', type: 'image/png' }
+          { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+          { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
         ]
       }
     })

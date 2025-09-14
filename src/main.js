@@ -51,6 +51,13 @@ pushBtn?.addEventListener('click', async () => {
   }
 })
 
+window.addEventListener('load', async () => {
+  await registerSW()
+  const canPush = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window
+  const pushBtn = document.getElementById('enablePushBtn')
+  if (pushBtn) pushBtn.hidden = !canPush   // tampilkan jika bisa
+})
+
 window.addEventListener('hashchange', () => {
   if (location.hash === '#main') return
   stopCamera()
